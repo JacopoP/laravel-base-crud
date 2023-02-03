@@ -7,6 +7,8 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Hello world</h1>
+    @foreach ($saints as $saint)
+        <div>{{$saint->name}} {{$saint->miracles_number}}</div>        
+    @endforeach
 </body>
 </html>
