@@ -23,4 +23,28 @@ class MainController extends Controller
         ];
         return view('pages.show_saint', $data);
     }
+
+    public function goToCreateSaint(){
+        return view('pages.form');
+    }
+
+    public function addSaint(Request $request){
+        $data = $request->all();
+
+        $saint = new Saint();
+        $saint->name = $data['name'];
+        $saint->miracles_number = $data['miracles_number'];
+        $saint->santification_date = $data['santification_date'];
+        $saint->birthplace = $data['birthplace'];
+
+        $saint->save();
+
+        return redirect() -> route('home');
+    }
+
+    public function deleteSaint($id){
+        $saint = Saint::find($id);
+        $saint -> delete();
+        return redirect() -> route('home');
+    }
 }
